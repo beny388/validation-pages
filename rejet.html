@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submission Rejected</title>
+</head>
+<body>
+    <h1>Submission Rejected</h1>
+    <form id="rejection-form">
+        <label for="reason">Please provide the reason for rejection:</label>
+        <textarea id="reason" name="reason" required></textarea>
+        <input type="hidden" id="email" name="email" value="">
+        <input type="hidden" id="submission" name="submission" value="">
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const urlParams = new URLSearchParams(window.location.search);
+            document.getElementById('email').value = urlParams.get('email');
+            document.getElementById('submission').value = urlParams.get('submission');
+        });
+
+        document.getElementById('rejection-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const reason = document.getElementById('reason').value;
+            const submission = document.getElementById('submission').value;
+
+            fetch('https://your-script-url', {
+                method: 'POST',
+                body: JSON.stringify({ email, reason, submission }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => response.json())
+              .then(data => {
+                  alert('Rejection reason submitted successfully.');
+              }).catch(error => {
+                  console.error('Error:', error);
+              });
+        });
+    </script>
+</body>
+</html>
+
