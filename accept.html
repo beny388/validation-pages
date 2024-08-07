@@ -1,11 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Submission Accepted</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submission Accepted</title>
 </head>
 <body>
-    <h1>Thank you!</h1>
-    <p>Your submission has been accepted.</p>
+  <h1>Submission Accepted</h1>
+  <p>Your submission has been accepted.</p>
 </body>
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const city = urlParams.get('city');
+  const name = urlParams.get('name');
+  const profession = urlParams.get('profession');
+
+  // URL of the Google Form pre-filled link
+  const formUrl = `https://docs.google.com/forms/d/e/your-form-id/viewform?usp=pp_url&entry.1591435541=${city}&entry.649535891=${name}&entry.1203927229=${profession}&entry.917535634=Accepted`;
+
+  window.location.href = formUrl;
+</script>
 </html>
 

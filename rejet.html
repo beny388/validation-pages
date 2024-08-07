@@ -1,44 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Submission Rejected</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submission Rejected</title>
 </head>
 <body>
-    <h1>Submission Rejected</h1>
-    <form id="rejection-form">
-        <label for="reason">Please provide the reason for rejection:</label>
-        <textarea id="reason" name="reason" required></textarea>
-        <input type="hidden" id="email" name="email" value="">
-        <input type="hidden" id="submission" name="submission" value="">
-        <button type="submit">Submit</button>
-    </form>
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const urlParams = new URLSearchParams(window.location.search);
-            document.getElementById('email').value = urlParams.get('email');
-            document.getElementById('submission').value = urlParams.get('submission');
-        });
-
-        document.getElementById('rejection-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const email = document.getElementById('email').value;
-            const reason = document.getElementById('reason').value;
-            const submission = document.getElementById('submission').value;
-
-            fetch('https://your-script-url', {
-                method: 'POST',
-                body: JSON.stringify({ email, reason, submission }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(response => response.json())
-              .then(data => {
-                  alert('Rejection reason submitted successfully.');
-              }).catch(error => {
-                  console.error('Error:', error);
-              });
-        });
-    </script>
+  <h1>Submission Rejected</h1>
+  <form id="rejectForm">
+    <label for="reason">Reason for rejection:</label>
+    <input type="text" id="reason" name="reason" required>
+    <input type="hidden" id="city" name="city" value="">
+    <input type="hidden" id="name" name="name" value="">
+    <input type="hidden" id="profession" name="profession" value="">
+    <input type="submit" value="Submit">
+  </form>
 </body>
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  document.getElementById('city').value = urlParams.get('city');
+  document.getElementById('name').value = urlParams.get('name');
+  document.getElementById('profession').value = urlParams.get('profession');
+
+  document.getElementById('rejectForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const reason = document.getElementById('reason').value;
+    const city = document.getElementById('city').value;
+    const name = document.getElementById('name').value;
+    const profession = document.getElementById('profession').value;
+
+    // URL of the Google Form pre-filled link
+    const formUrl = `https://docs.google.com/forms/d/e/your-form-id/viewform?usp=pp_url&entry.1591435541=${city}&entry.649535891=${name}&entry.1203927229=${profession}&entry.917535634=Rejected&entry.1234567890=${reason}`;
+
+    window.location.href = formUrl;
+  });
+</script>
 </html>
 
