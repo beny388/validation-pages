@@ -30,7 +30,7 @@
     const profession = document.getElementById('profession').value;
 
     // URL of the Google Form pre-filled link
-    const formUrl = `https://docs.google.com/forms/d/e/your-form-id/viewform?usp=pp_url&entry.1591435541=${city}&entry.649535891=${name}&entry.1203927229=${profession}&entry.917535634=Rejected&entry.1234567890=${reason}`;
+    const formUrl = `https://docs.google.com/forms/d/e/1FAIpQLSd89qaADS2Wj4eS-KDofOAr0BoJZ9v9rEOQVgzVQaexjCBeew/viewform?usp=pp_url&entry.831971965=${encodeURIComponent(city)}&entry.2070939935=${encodeURIComponent(name)}&entry.1866930758=${encodeURIComponent(profession)}&entry.350169679=${encodeURIComponent(reason)}`;
 
     window.location.href = formUrl;
   });
